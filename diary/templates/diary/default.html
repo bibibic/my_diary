@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="ko">
+<head>
+  <title>My Diary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link href="//fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/diary.css' %}">
+</head>
+
+<body>
+  <div class="page-header">
+  <h1>My Diary
+    <a href="{% url 'new_diary' %}"><span class="glyphicon glyphicon-plus btn btn-default"></span></a></h1>
+  </div>
+  {% if user.is_active %}
+    <li><a href="{%url 'login' %}"> <span class="glyphicon glyphicon-heart"></span> {{user.username}}</a></li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    {% else %}
+    <li><a href="{%url 'login' %}"> <span class="glyphicon glyphicon-user"></span> Login</a></li>
+    <li><a href="{% url 'admin:index' %}">Admin</a></li>
+    {% endif %}
+  <div class="container diary">
+  {% for diary in diarys%}
+    <h2><a href="{% url 'detail' diary.id %}">{{diary.title}}</a></h2>
+  {% endfor %}
+  </div>
+</body>
+</html>
