@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import CreateView,FormView
+from django.views.generic.edit import CreateView,FormView,DeleteView,UpdateView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 
@@ -26,17 +26,16 @@ class MyFormView(FormView):
         diary.generate()
         return super().form_valid(form)
 
+class UpdateView(UpdateView):
+    model = Add_story
+    fields =['title','content','update_date']
 
-'''def post(request):
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            diary = form.save(commit = False)
-            diary.generate()
-            return redirect('index')
-    else:
-        form = PostForm
-        return render(request, "diary/form.html",{"form": form})'''
+
+class DeleteView(DeleteView):
+    model= Add_story
+    template_name="diary/detail.html"
+    success_url = reverse_lazy('index')
+
 
 class DetailView(DetailView):
     model=Add_story
