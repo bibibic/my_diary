@@ -25,7 +25,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/',views.CreateUserView.as_view(),name='signup'),
     path('accounts/signup/done/',views.RegisteredView.as_view() ,name='create_user_done'),
-    path('diary/<int:pk>/update/',views.UpdateView.as_view(), name='update'),
+    path('diary/<int:pk>/add_story_update_form/',views.UpdateView.as_view(), name='update'),
     path('diary/<int:pk>/delete/',views.DeleteView.as_view(), name='delete'),
 
 ]
