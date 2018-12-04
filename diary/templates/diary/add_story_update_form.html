@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 {% load staticfiles %}
 <html lang="ko">
@@ -16,11 +17,11 @@
   </div>
   <div class="container diary">
 
-    <h2>{{diary.title}}</h2>
-    <p> {{diary.content|linebreaksbr}}</p>
-    <p> {{diary.update_date}} </p>
-     <form action="{% url 'delete' diary.id %}" method="POST" class="post-form"> {%csrf_token%} {{form.as_p}} <button type="submit" class="save btn btn-defaul">삭제</button> </form>
-     <a href="{% url 'update' diary.id %}"><span class="post-form"></span><button type="submit" class="save btn btn-defaul">수정</button></a>
-  </div>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update">
+</form>
+
+</div>
 </body>
 </html>

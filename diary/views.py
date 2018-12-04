@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView,FormView,DeleteView,UpdateView
 from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy,reverse
 
 from . models import Add_story
 from .forms import PostForm
@@ -29,7 +29,9 @@ class MyFormView(FormView):
 class UpdateView(UpdateView):
     model = Add_story
     fields =['title','content','update_date']
-
+    template_name_suffix = '_update_form'
+    def get_success_url(self):
+        return reverse_lazy('detail', args = (self.object.id,))
 
 class DeleteView(DeleteView):
     model= Add_story
