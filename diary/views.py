@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView,FormView,DeleteView,UpdateView
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy,reverse
 
 from . models import Add_story
@@ -17,23 +18,30 @@ class IndexView(ListView):
     def get_queryset(self):
       return Add_story.objects.all()
 
-class MyFormView(FormView):
+class MyFormView(LoginRequiredMixin, FormView):
+    login_url = '/accounts/login/'
+    redirect_field_name = ''
     form_class=PostForm
     template_name="diary/form.html"
     success_url='/diary/'
+
     def form_valid(self,form):
         diary = form.save(commit = False)
         diary.generate()
         return super().form_valid(form)
 
-class UpdateView(UpdateView):
+class UpdateView(LoginRequiredMixin, UpdateView):
+    login_url = '/accounts/login/'
+    redirect_field_name = ''
     model = Add_story
     fields =['title','content','update_date']
     template_name_suffix = '_update_form'
     def get_success_url(self):
         return reverse_lazy('detail', args = (self.object.id,))
 
-class DeleteView(DeleteView):
+class DeleteView(LoginRequiredMixin, DeleteView):
+    login_url = '/accounts/login/'
+    redirect_field_name = ''
     model= Add_story
     template_name="diary/detail.html"
     success_url = reverse_lazy('index')
