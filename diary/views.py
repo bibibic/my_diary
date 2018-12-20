@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView,FormView,DeleteView,UpdateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy,reverse
+from django.conf import settings
 
 from . models import Add_story
 from .forms import PostForm
@@ -27,6 +28,7 @@ class MyFormView(LoginRequiredMixin, FormView):
 
     def form_valid(self,form):
         diary = form.save(commit = False)
+        diary.auther = self.request.user
         diary.generate()
         return super().form_valid(form)
 
@@ -36,14 +38,25 @@ class UpdateView(LoginRequiredMixin, UpdateView):
     model = Add_story
     fields =['title','content','update_date']
     template_name_suffix = '_update_form'
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.auther != self.request.user:
+            return HttpResponse("You are not allowed to edit this Post")
+        return super(UpdateView, self).dispatch(request, *args, **kwargs)
     def get_success_url(self):
         return reverse_lazy('detail', args = (self.object.id,))
 
 class DeleteView(LoginRequiredMixin, DeleteView):
+
     login_url = '/accounts/login/'
     redirect_field_name = ''
     model= Add_story
     template_name="diary/detail.html"
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.auther != self.request.user:
+            return HttpResponse("You are not allowed to delete this Post")
+        return super(DeleteView, self).dispatch(request, *args, **kwargs)
     success_url = reverse_lazy('index')
 
 

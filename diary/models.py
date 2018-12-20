@@ -1,9 +1,11 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 import random
 
 # Create your models here.
 class Add_story(models.Model):
+    auther=models.ForeignKey(settings.AUTH_USER_MODEL , on_delete=models.CASCADE)
     title=models.CharField(max_length=80)
     content=models.TextField()
     update_date=models.DateTimeField()
