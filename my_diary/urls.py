@@ -27,5 +27,7 @@ urlpatterns = [
     path('accounts/signup/done/',views.RegisteredView.as_view() ,name='create_user_done'),
     path('diary/<int:pk>/add_story_update_form/',views.UpdateView.as_view(), name='update'),
     path('diary/<int:pk>/delete/',views.DeleteView.as_view(), name='delete'),
+    path('', TemplateView.as_view(template_name='logged_out.html'), name='logout'),
+    ...
 
 ]
