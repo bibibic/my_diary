@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy,reverse
 from django.conf import settings
+from django.contrib.auth import logout
 
 from . models import Add_story
 from .forms import PostForm

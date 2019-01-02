@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
+import pymysql
 
+pymysql.install_as_MySQLdb()
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -31,14 +33,14 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
-
+    'diary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'diary',
+
 ]
 
 MIDDLEWARE = [
@@ -77,8 +79,11 @@ WSGI_APPLICATION = 'my_diary.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bibibic$mysite',
+        'USER': 'bibibic',
+        'PASSWORD': '111111@@',
+        'HOST': 'bibibic.mysql.pythonanywhere-services.com',
     }
 }
 
