@@ -25,6 +25,8 @@
   <div class="container diary">
   {% for diary in diarys%}
     <h2><a href="{% url 'detail' diary.id %}">{{diary.title}}</a></h2>
+    {{diary.auther}}
+
   {% endfor %}
   </div>
 </body>

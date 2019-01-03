@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'hitcount',
     'diary',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -86,6 +87,7 @@ DATABASES = {
         'HOST': 'bibibic.mysql.pythonanywhere-services.com',
     }
 }
+
 
 
 # Password validation

@@ -9,6 +9,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy,reverse
 from django.conf import settings
 from django.contrib.auth import logout
+from hitcount.views import HitCountDetailView
+
 
 from . models import Add_story
 from .forms import PostForm
@@ -61,10 +63,11 @@ class DeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('index')
 
 
-class DetailView(DetailView):
+class DetailView(HitCountDetailView, DetailView):
     model=Add_story
     template_name="diary/detail.html"
     context_object_name = 'diary'
+    count_hit = True
 
 
 class CreateUserView(CreateView):
