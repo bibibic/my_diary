@@ -13,7 +13,7 @@
    <h1><a href="/">My Diary</a></h1>
   </div>
   <div class="container diary">
-   <form method="POST" class="post-form"> {%csrf_token%} {{form.as_p}} <button type="submit" class="save btn btn-default">Save</button> </form>
+   <form method="POST" class="post-form" enctype="multipart/form-data"> {%csrf_token%} {{form.as_p}} <button type="submit" class="save btn btn-default">Save</button> </form>
   </div>
  </body>
 </html>

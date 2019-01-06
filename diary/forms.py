@@ -7,4 +7,4 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Add_story
-        fields = ('title', 'content',)
+        fields = ('title', 'content', 'image')
