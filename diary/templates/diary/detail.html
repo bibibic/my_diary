@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-{% load staticfiles %}
+{% extends "diary/base.html"%}
 {% load hitcount_tags %}
-<html lang="ko">
-<head>
-  <title>My Diary</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  <link href="//fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/diary.css' %}">
-</head>
-
-<body>
-  <div class="page-header">
-  <h1><a href="/">My Diary</a></h1>
-  </div>
+{% block content %}
   <div class="container diary">
 
     <h2>{{diary.title}}</h2>
@@ -23,10 +9,9 @@
     {% if diary.image %}
     <p><img src='{{diary.image.url}}'></p>
     {% endif %}
-    <p>{% get_hit_count for diary %} </p>
+    <p>조회수: {% get_hit_count for diary %}</p>
      <form action="{% url 'delete' diary.id %}" method="POST" class="post-form"> {%csrf_token%} {{form.as_p}} <button type="submit" class="save btn btn-defaul">삭제</button> </form>
-     <a href="{% url 'update' diary.id %}"><span class="post-form"></span><button type="submit" class="save btn btn-defaul">수정</button></a>
+     <form action="{% url 'update' diary.id %}" method="GET" class="post-form"> {%csrf_token%} {{form.as_p}} <button type="submit" class="save btn btn-defaul">수정</button></form>
 
   </div>
-</body>
-</html>
+{% endblock %}

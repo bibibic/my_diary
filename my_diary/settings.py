@@ -81,10 +81,13 @@ WSGI_APPLICATION = 'my_diary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bibibic$mysite',
-        'USER': 'bibibic',
-        'PASSWORD': '111111@@',
-        'HOST': 'bibibic.mysql.pythonanywhere-services.com',
+        'NAME': 'mysite',
+        'USER': 'root',
+        'PASSWORD':'111111@@', # 유저 패스워드
+        'HOST':'localhost',
+        'PORT':''
+
+
     }
 }
 

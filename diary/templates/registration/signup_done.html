@@ -1,3 +1,8 @@
-<h1>회원가입 ㅊㅊ</h1>
-<br>
-<a href="{% url 'login'%}">로그인하기</a>
+{% extends "diary/base.html"%}
+{% block content %}
+  <div class="container diary">
+  <h1>회원가입 ㅊㅊ</h1>
+  <br>
+  <a href="{% url 'login'%}">로그인하기</a>
+  </div>
+{% endblock %}

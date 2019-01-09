@@ -1,6 +1,12 @@
-<form method="post" action="{% url 'signup' %}">
-{% csrf_token %}
+{% extends "diary/base.html"%}
+{% block content %}
+  <div class="container diary">
+  <form method="post" action="{% url 'signup' %}">
+  {% csrf_token %}
 
-{{ form.as_p }}
-<button type="submit">회원가입</button>
-</form>
+  {{ form.as_p }}
+  <button type="submit">회원가입</button>
+  </form>
+</div>
+
+{% endblock %}

@@ -39,7 +39,7 @@ class UpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/accounts/login/'
     redirect_field_name = ''
     model = Add_story
-    fields =['title','content','update_date']
+    fields =['title','content','update_date','image']
     template_name_suffix = '_update_form'
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()

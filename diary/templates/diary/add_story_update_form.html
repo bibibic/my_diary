@@ -1,20 +1,5 @@
-
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="ko">
-<head>
-  <title>My Diary</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  <link href="//fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/diary.css' %}">
-</head>
-
-<body>
-  <div class="page-header">
-  <h1><a href="/">My Diary</a></h1>
-  </div>
+{% extends "diary/base.html"%}
+{% block content %}
   <div class="container diary">
 
 <form method="post">{% csrf_token %}
@@ -23,5 +8,4 @@
 </form>
 
 </div>
-</body>
-</html>
+{% endblock %}
