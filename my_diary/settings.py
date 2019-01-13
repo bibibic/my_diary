@@ -81,16 +81,12 @@ WSGI_APPLICATION = 'my_diary.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysite',
-        'USER': 'root',
-        'PASSWORD':'111111@@', # 유저 패스워드
-        'HOST':'localhost',
-        'PORT':''
-
-
+        'NAME': 'bibibic$mysite',
+        'USER': 'bibibic',
+        'PASSWORD': '111111@@',
+        'HOST': 'bibibic.mysql.pythonanywhere-services.com',
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
