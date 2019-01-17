@@ -20,8 +20,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('diary/',views.IndexView.as_view(), name='index'),
-    path('', views.IndexView.as_view(), name='index'),
+    path('diary/',views.Index, name='index'),
+    path('', views.Index, name='index'),
     path('diary/new/',views.MyFormView.as_view(),name="new_diary"),
     path('diary/<int:pk>/detail/',views.DetailView.as_view(),name="detail"),
     path('accounts/', include('django.contrib.auth.urls')),

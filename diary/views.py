@@ -16,11 +16,16 @@ from . models import Add_story
 from .forms import PostForm
 # Create your views here.
 
-class IndexView(ListView):
+'''class IndexView(ListView):
     template_name="diary/default.html"
     context_object_name='diarys'
     def get_queryset(self):
-      return Add_story.objects.all()
+      return Add_story.objects.all()''' 
+def Index(request):
+    diarys=Add_story.objects.all()
+    context={'diarys':diarys}
+    return render(request,'diary/default.html',context)
+
 
 class MyFormView(LoginRequiredMixin, FormView):
     login_url = '/accounts/login/'
@@ -48,6 +53,9 @@ class UpdateView(LoginRequiredMixin, UpdateView):
         return super(UpdateView, self).dispatch(request, *args, **kwargs)
     def get_success_url(self):
         return reverse_lazy('detail', args = (self.object.id,))
+
+
+
 
 class DeleteView(LoginRequiredMixin, DeleteView):
 

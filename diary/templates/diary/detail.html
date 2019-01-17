@@ -11,7 +11,7 @@
     {% endif %}
     <p>조회수: {% get_hit_count for diary %}</p>
      <form action="{% url 'delete' diary.id %}" method="POST" class="post-form"> {%csrf_token%} {{form.as_p}} <button type="submit" class="save btn btn-defaul">삭제</button> </form>
-     <form action="{% url 'update' diary.id %}" method="GET" class="post-form"> {%csrf_token%} {{form.as_p}} <button type="submit" class="save btn btn-defaul">수정</button></form>
+     <form action="{% url 'update' diary.id %}" method="POST" class="post-form"> {%csrf_token%} {{form.as_p}} <button type="submit" class="save btn btn-defaul">수정</button></form>
 
   </div>
 {% endblock %}
